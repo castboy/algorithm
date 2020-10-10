@@ -11,39 +11,63 @@ type Node struct {
 // 递归实现
 
 func PreOrder(root *Node) {
-	fmt.Println(root.Val)
+	//fmt.Println(root.Val)
+	//
+	//if root.Left != nil {
+	//	PreOrder(root.Left)
+	//}
+	//
+	//if root.Right != nil {
+	//	PreOrder(root.Right)
+	//}
 
-	if root.Left != nil {
-		PreOrder(root.Left)
+	if root == nil {
+		return
 	}
 
-	if root.Right != nil {
-		PreOrder(root.Right)
-	}
+	fmt.Print(root.Val)
+	PreOrder(root.Left)
+	PreOrder(root.Right)
 }
 
 func InOrder(root *Node) {
-	if root.Left != nil {
-		InOrder(root.Left)
+	//if root.Left != nil {
+	//	InOrder(root.Left)
+	//}
+	//
+	//fmt.Println(root.Val)
+	//
+	//if root.Right != nil {
+	//	InOrder(root.Right)
+	//}
+
+	if root == nil {
+		return
 	}
 
-	fmt.Println(root.Val)
-
-	if root.Right != nil {
-		InOrder(root.Right)
-	}
+	InOrder(root.Left)
+	fmt.Print(root.Val)
+	InOrder(root.Right)
 }
 
 func PostOrder(root *Node) {
-	if root.Left != nil {
-		PostOrder(root.Left)
+	//if root.Left != nil {
+	//	PostOrder(root.Left)
+	//}
+	//
+	//if root.Right != nil {
+	//	PostOrder(root.Right)
+	//}
+	//
+	//fmt.Println(root.Val)
+
+	if root == nil {
+		return
 	}
 
-	if root.Right != nil {
-		PostOrder(root.Right)
-	}
-
-	fmt.Println(root.Val)
+	PostOrder(root.Left)
+	PostOrder(root.Right)
+	fmt.Print(root.Val)
 }
 
 // 深度优先遍历
