@@ -30,3 +30,13 @@ func TestPostOrder(t *testing.T) {
 	root := newBTree()
 	PostOrder(root)
 }
+
+func TestInOrderStack(t *testing.T) {
+	root := newBTree()
+	InOrderStack(root)
+}
+
+func TestPreOrderStack(t *testing.T) {
+	root := newBTree()
+	PreOrderStack(root)
+}

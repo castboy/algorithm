@@ -1,6 +1,9 @@
 package tree
 
-import "fmt"
+import (
+	"algorithm/stack"
+	"fmt"
+)
 
 type Node struct {
 	Val string
@@ -70,7 +73,65 @@ func PostOrder(root *Node) {
 	fmt.Print(root.Val)
 }
 
-// 深度优先遍历
-// 堆栈实现
+func leftPush(stack *stack.Stack, root *Node) {
+	for {
+		if root != nil {
+			stack.Push(*root)
+			fmt.Print(root.Val)
+			root = root.Left
+		} else {
+			break
+		}
+	}
+}
+
+func PreOrderStack(root *Node) {
+	bStack := stack.NewStack()
+
+	leftPush(bStack, root)
+
+	for {
+		if e := bStack.Pop(); e != nil {
+			leftPush(bStack, e.(Node).Right)
+		} else {
+			break
+		}
+	}
+}
+
+func rightPush(stack *stack.Stack, root *Node) {
+	for {
+		if root != nil {
+			stack.Push(*root)
+			root = root.Right
+		} else {
+			break
+		}
+	}
+}
+
+func InOrderStack(root *Node) {
+	aStack := stack.NewStack()
+	bStack := stack.NewStack()
+
+	rightPush(bStack, root)
+
+	for {
+		if e := bStack.Pop(); e != nil {
+			aStack.Push(e)
+			rightPush(bStack, e.(Node).Left)
+		} else {
+			break
+		}
+	}
+
+	for {
+		if e := aStack.Pop(); e != nil {
+			fmt.Print(e.(Node).Val)
+		} else {
+			break
+		}
+	}
+}
 
 
