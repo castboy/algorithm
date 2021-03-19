@@ -45,17 +45,18 @@ func Selection(nums []int) []int {
 //逐步往后选取一个数,然后把该数与之前的排好的进行比较,如果比某个大,就插入到该数的后面
 func Insertion(nums []int) []int {
 	numLen := len(nums)
-	for current := 1; current < numLen; current++ {
-		for j := current-1; j >= 0; j-- {
-			if nums[j] > nums[current] {
+	for i := 1; i < numLen; i++ {
+		tmp := nums[i]
+		for j := i -1; j >= 0; j-- {
+			if nums[j] > tmp {
 				nums[j+1] = nums[j]
 			} else {
-				nums[j+1] = nums[current]
+				nums[j+1] = tmp
 				break
 			}
 			// 如果都移动了,然后遍历到0了,说明当前值是最小的,把当前值放到最小的位置
 			if j == 0 {
-				nums[j] = nums[current]
+				nums[j] = tmp
 			}
 		}
 	}
