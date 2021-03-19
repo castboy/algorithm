@@ -102,7 +102,8 @@ func Shell(nums []int) []int {
 
 	return nums
 }
-
+//时间复杂度 O(nlogn),空间复杂度 O(n)
+//将序列一分为二，各自排序，最后合并
 func Merge(nums []int) []int {
 	numsLen := len(nums)
 
