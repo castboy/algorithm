@@ -153,6 +153,45 @@ func mergeTwo(nums1, nums2 []int) []int {
 	return res
 }
 
+//数组从逻辑上讲就是一个堆结构；
+//大顶堆：arr[i] >= arr[2i+1] && arr[i] >= arr[2i+2] ；小顶堆：arr[i] <= arr[2i+1] && arr[i] <= arr[2i+2]
+//堆排序的基本思想是：将待排序序列构造成一个大顶堆，此时，整个序列的最大值就是堆顶的根节点。将其与末尾元素进行交换，此时末尾就为最大值。然后将剩余n-1个元素重新构造成一个堆，这样会得到n个元素的次小值。如此反复执行，便能得到一个有序序列了。
+//时间复杂度O(nlogn)
+// ref: https://blog.csdn.net/qq_36186690/article/details/82505569
+func Heap(nums []int) []int {
+	numsLen := len(nums)
+	//1.构建大顶堆, 从第一个非叶子结点从下至上，从右至左调整结构
+	for i := numsLen/2; i >= 0; i-- {
+		heapAdjust(nums, i, numsLen)
+	}
+
+	//2.调整堆结构+交换堆顶元素与末尾元素
+	for j := numsLen-1; j > 0; j-- {
+		// 交换堆顶元素与末尾元素
+		nums[j], nums[0] = nums[0], nums[j]
+		heapAdjust(nums, 0, j)
+	}
+
+	return nums
+}
+
+func heapAdjust(nums []int, rootIndex, length int) {
+	for k := rootIndex*2+1; k < length; k = k*2+1 {
+		if k+1 < length && nums[k] < nums[k+1] {
+			k++
+		}
+
+		if nums[k] > nums[rootIndex] {
+			nums[rootIndex], nums[k] = nums[k], nums[rootIndex]
+			rootIndex = k
+			continue
+		}
+
+		break
+	}
+}
+
+
 func main() {
 	nums := []int{1, 2, 6, 4, 3, 0, -1}
 	fmt.Println(Bubble(nums))
@@ -176,4 +215,7 @@ func main() {
 	nums2 := []int{2, 3, 6}
 
 	fmt.Println(mergeTwo(nums1, nums2))
+
+	nums = []int{1, 2, 6, 4, 3, 0, -1, 7}
+	fmt.Println(Heap(nums))
 }
