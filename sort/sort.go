@@ -102,13 +102,76 @@ func Shell(nums []int) []int {
 	return nums
 }
 
+func Merge(nums []int) []int {
+	numsLen := len(nums)
+
+	if numsLen < 2 {
+		return nums
+	}
+
+	mid := numsLen / 2
+
+	return mergeTwo(Merge(nums[0:mid]), Merge(nums[mid:]))
+}
+
+func mergeTwo(nums1, nums2 []int) []int {
+	res1Len := len(nums1)
+	res2Len := len(nums2)
+
+	index1 := 0
+	index2 := 0
+
+	res := make([]int, res1Len+res2Len)
+	index := 0
+
+	for index1 < res1Len && index2 < res2Len {
+		if nums1[index1] < nums2[index2] {
+			res[index] = nums1[index1]
+			index1++
+		} else {
+			res[index] = nums2[index2]
+			index2++
+		}
+
+		index++
+	}
+
+	for index1 < res1Len {
+		res[index] = nums1[index1]
+		index1++
+		index++
+	}
+
+	for index2 < res2Len {
+		res[index] = nums2[index2]
+		index2++
+		index++
+	}
+
+	return res
+}
+
 func main() {
 	nums := []int{1, 2, 6, 4, 3, 0, -1}
 	fmt.Println(Bubble(nums))
+
+	nums = []int{1, 2, 6, 4, 3, 0, -1}
 	fmt.Println(Selection(nums))
+
+	nums = []int{1, 2, 6, 4, 3, 0, -1}
 	fmt.Println(Insertion(nums))
+
+	nums = []int{1, 2, 6, 4, 3, 0, -1}
 	fmt.Println(Insertion2(nums))
 
-	nums = []int{1, 2, 6, 4, 3, 0}
+	nums = []int{1, 2, 6, 4, 3, 0, -1}
 	fmt.Println(Shell(nums))
+
+	nums = []int{1, 2, 6, 4, 3, 0, -1}
+	fmt.Println(Merge(nums))
+
+	nums1 := []int{1, 4, 5}
+	nums2 := []int{2, 3, 6}
+
+	fmt.Println(mergeTwo(nums1, nums2))
 }
