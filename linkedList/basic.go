@@ -10,11 +10,11 @@ type Node struct {
 }
 
 type List struct {
-	headNode *Node
+	HeadNode *Node
 }
 
 func (l *List) IsEmpty() bool {
-	if l.headNode == nil {
+	if l.HeadNode == nil {
 		return true
 	}
 
@@ -23,7 +23,7 @@ func (l *List) IsEmpty() bool {
 
 func (l *List) Length() int {
 	var count int
-	cur := l.headNode
+	cur := l.HeadNode
 
 	for cur != nil {
 		count++
@@ -38,8 +38,8 @@ func (l *List) Add(data Object) {
 		Data: data,
 	}
 
-	newHeadNode.Next = l.headNode
-	l.headNode = newHeadNode
+	newHeadNode.Next = l.HeadNode
+	l.HeadNode = newHeadNode
 }
 
 func (l *List) Append(data Object) {
@@ -47,12 +47,12 @@ func (l *List) Append(data Object) {
 		Data: data,
 	}
 
-	if l.headNode == nil {
-		l.headNode = node
+	if l.HeadNode == nil {
+		l.HeadNode = node
 		return
 	}
 
-	cur := l.headNode
+	cur := l.HeadNode
 
 	for cur.Next != nil {
 		cur = cur.Next
@@ -67,7 +67,7 @@ func (l *List) Insert(index int, data Object) {
 		return
 	}
 
-	cur := l.headNode
+	cur := l.HeadNode
 	count := 0
 
 	for cur != nil {
@@ -91,12 +91,12 @@ func (l *List) Insert(index int, data Object) {
 }
 
 func (l *List) Remove(data Object) {
-	if data == l.headNode.Data {
-		l.headNode = l.headNode.Next
+	if data == l.HeadNode.Data {
+		l.HeadNode = l.HeadNode.Next
 		return
 	}
 
-	cur := l.headNode
+	cur := l.HeadNode
 
 	for cur.Next != nil {
 		if cur.Next.Data == data {
@@ -109,11 +109,11 @@ func (l *List) Remove(data Object) {
 
 func (l *List) RemoveAtIndex(index int) {
 	if index <= 0 {
-		l.headNode = l.headNode.Next
+		l.HeadNode = l.HeadNode.Next
 		return
 	}
 
-	cur := l.headNode
+	cur := l.HeadNode
 	count := 0
 
 	for cur != nil {
@@ -132,7 +132,7 @@ func (l *List) RemoveAtIndex(index int) {
 }
 
 func (l *List) Contain(data Object) bool {
-	cur := l.headNode
+	cur := l.HeadNode
 
 	for cur != nil {
 		if cur.Data == data {
@@ -148,26 +148,26 @@ func (l *List) Reverse() {
 	var newHeadNode *Node
 	var node *Node
 
-	for l.headNode != nil {
-		node = l.headNode
-		l.headNode = l.headNode.Next
+	for l.HeadNode != nil {
+		node = l.HeadNode
+		l.HeadNode = l.HeadNode.Next
 
 		node.Next = newHeadNode
 		newHeadNode = node
 	}
 
-	l.headNode = newHeadNode
+	l.HeadNode = newHeadNode
 }
 
 func (l *List) Show() {
-	if l.headNode == nil {
+	if l.HeadNode == nil {
 		fmt.Println("nil linkedList")
 	}
 
-	var cur = l.headNode
+	var cur = l.HeadNode
 
 	for cur != nil {
-		fmt.Println(cur.Data)
+		fmt.Println(cur.Data.(string))
 		cur = cur.Next
 	}
 
