@@ -46,6 +46,11 @@ func TestPostOrder2(t *testing.T) {
 	PostOrder2(root)
 }
 
+func TestLevelOrder(t *testing.T) {
+	root := newBTree()
+	LevelOrder(root)
+}
+
 func TestInOrderStack(t *testing.T) {
 	root := newBTree()
 	InOrderStack(root)

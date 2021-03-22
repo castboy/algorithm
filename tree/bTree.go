@@ -191,3 +191,24 @@ func PostOrder2(root *Node) {
 	}
 }
 
+func LevelOrder(root *Node) {
+	aQueue := stack.NewQueue()
+	node := root
+
+	if (node != nil) {
+		aQueue.Enqueue(node)
+	}
+
+	for (aQueue.Size() != 0) {
+		node = aQueue.Dequeue().(*Node)
+		fmt.Println(node.Val)
+
+		if (node.Left != nil) {
+			aQueue.Enqueue(node.Left)
+		}
+
+		if (node.Right != nil) {
+			aQueue.Enqueue(node.Right)
+		}
+	}
+}
