@@ -21,6 +21,16 @@ func TestPreOrder(t *testing.T) {
 	PreOrder(root)
 }
 
+func TestPreOrder2(t *testing.T) {
+	root := newBTree()
+	PreOrder2(root)
+}
+
+func TestInOrder2(t *testing.T) {
+	root := newBTree()
+	InOrder2(root)
+}
+
 func TestInOrder(t *testing.T) {
 	root := newBTree()
 	InOrder(root)
@@ -29,6 +39,11 @@ func TestInOrder(t *testing.T) {
 func TestPostOrder(t *testing.T) {
 	root := newBTree()
 	PostOrder(root)
+}
+
+func TestPostOrder2(t *testing.T) {
+	root := newBTree()
+	PostOrder2(root)
 }
 
 func TestInOrderStack(t *testing.T) {

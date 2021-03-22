@@ -23,6 +23,14 @@ func (stack *Stack) Pop() interface{} {
 	return nil
 }
 
+func (stack *Stack) Peek() interface{} {
+	if e := stack.l.Back(); e != nil {
+		return e.Value
+	}
+
+	return nil
+}
+
 func (stack *Stack) Len() int {
 	return stack.l.Len()
 }
